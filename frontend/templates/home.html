@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - JobConnect</title>
+</head>
+<body>
+  {% if user %}
+    <h1>Welcome, {{ admins.username|default:admins.email }}!</h1>
+    <p>You are logged in with <strong>{{ admins.email }}</strong></p>
+    <a href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <h1>Welcome to JobConnect!</h1>
+    <p>You are not logged in.</p>
+    <a href="{% url 'admin_login' %}">Login</a>
+  {% endif %}
+</body>
+</html>

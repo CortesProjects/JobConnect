@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in - JobConnect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      padding-left: 30vh;
+      align-items: center;       /* vertical centering */
+      width: 70%;
+      
+    }
+
+    .form-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .form-box {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .logo {
+      margin-bottom: 40px;
+      font-weight: bold;
+      font-size: 24px;
+      color: red;
+      display: flex;
+      align-items: center;
+    }
+
+    h2 { margin-bottom: 10px; }
+
+    .create-account {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.85em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+
+    .image-container {
+    width: 700px;
+    height: 635px;
+    background: url("{% static 'img/login_banner.png' %}") no-repeat center center;
+    background-size: cover;
+    
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Form -->
+    <div class="form-container">
+      <div class="form-box">
+        <div class="logo">
+          <img src="{% static 'img/logo.jpg' %}" alt="Logo" height="28" style="margin-right:8px;">
+          JobConnect
+        </div>
+
+        <h2>Admin Sign in</h2>
+        <p class="create-account">
+          Don’t have an account? <a href="{% url 'register' %}">Create Account</a>
+        </p>
+
+        <form method="post">
+          {% csrf_token %}
+          
+          <input type="email" name="email" placeholder="Email address" 
+                 value="{{ email_value|default:'' }}" required>
+          {% if email_error %}
+            <span class="error">{{ email_error }}</span>
+          {% endif %}
+
+          <input type="password" name="password" placeholder="Password" required>
+          {% if password_error %}
+            <span class="error">{{ password_error }}</span>
+          {% endif %}
+
+          <div class="options">
+            <label><input type="checkbox" name="remember"> Remember Me</label>
+            <a href="#">Forget password</a>
+          </div>
+
+          <button type="submit">Sign In →</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div class="image-container"></div>
+  </div>
+</body>
+</html>
