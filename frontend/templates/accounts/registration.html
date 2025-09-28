@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{% endblock %}
+
+{% block title %}JobConnect - Create Account{% endblock %}
+{% block user_actions %}
+    <!-- Hides login/signup buttons on the register page -->
+{% endblock %}
+{% block content %}
+<div class="register-page-wrapper">
+    
+    <div class="register-form-container">
+        <a href="{% url 'homepage' %}" class="backbtn" title="Go back to Homepage">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+        <div class="register-header-row">
+            <h2>Create account.</h2>
+            <div class="select-wrapper">
+                <select class="form-select" id="account-type" name="account_type">
+                    <option value="applicant" selected>Applicant</option>
+                    <option value="employer">Employer</option>
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+        </div>
+        <p>Already have account? <a href="#" class="log-in-link">Log In</a></p>
+        {% if form.non_field_errors %}
+            <div class="alert error-message">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="post">{% csrf_token %}
+            <div class="form-group-row">
+                <div class="field-container">
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <small class="error-text">{{ form.first_name.errors.0 }}</small>
+                    {% endif %}
+                </div>
+                <div class="field-container">
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <small class="error-text">{{ form.last_name.errors.0 }}</small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="field-container">
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <small class="error-text">{{ form.email.errors.0 }}</small>
+                {% endif %}
+            </div>
+            <div class="password-field field-container">
+                {{ form.password }}
+                <!-- <i class="fas fa-eye password-toggle"></i> -->
+                {% if form.password.errors %}
+                    <small class="error-text">{{ form.password.errors.0 }}</small>
+                {% endif %}
+            </div>
+            <div class="password-field field-container">
+                {{ form.password2 }}
+                <!-- <i class="fas fa-eye password-toggle"></i> -->
+                {% if form.password2.errors %}
+                    <small class="error-text">{{ form.password2.errors.0 }}</small>
+                {% endif %}
+            </div>
+            <div class="checkbox-group">
+                {{ form.terms_and_conditions }}
+                <label for="{{ form.terms_and_conditions.id_for_label }}">
+                    I've read and agree with your <a href="#" class="terms-link">Terms of Services</a>
+                </label>
+            </div>
+            {% if form.terms_and_conditions.errors %}
+                <div class="error-text mb-3">{{ form.terms_and_conditions.errors.0 }}</div>
+            {% endif %}
+        
+            <button type="submit" class="cta-btn register-submit">
+                Create Account <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    
+        <div class="separator">
+            <span>or</span>
+        </div>    
+        <div class="social-login">
+            <button class="social-btn facebook-btn">
+                <i class="fab fa-facebook-f"></i> Sign up with Facebook
+            </button>
+            <button class="social-btn google-btn">
+                <i class="fab fa-google"></i> Sign up with Google
+            </button>
+        </div>
+    </div>
+
+    <div class="register-illustration-container">
+        <img src="{% static 'img/Illustration.png' %}" alt="Illustration of person creating an account">
+    </div>
+
+</div>
+
+{% endblock %}
