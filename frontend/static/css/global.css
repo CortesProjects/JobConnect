@@ -1,0 +1,225 @@
+:root {
+    --primary-color: #CC0A0D; 
+    --secondary-color: #FFCFD0;
+    --text-color-dark: #333333;
+    --text-color-light: #666666;
+    --bg-light: #F9F9F9;
+    --bg-white: #FFFFFF;
+    --border-color: #EEEEEE;
+    --success-green: #4CAF50;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; 
+}
+
+body {
+    background-color: var(--bg-white);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    padding-top: 70px;
+}
+
+main {
+    padding: 0; 
+}
+
+.page-content-wrapper {
+    padding: 0 10%; 
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 40px 0;
+}
+
+/* --- Buttons and Utility Classes --- */
+.register-btn, .search-btn, .apply-btn, .cta-btn, .login {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-btn {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+.view-all {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid rgb(77, 77, 77);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.bg-green { background-color: var(--success-green); }
+.bg-dark { background-color: var(--text-color-dark); }
+.bg-red { background-color: var(--primary-color); }
+
+/* --- Header Styles --- */
+.header {
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    background-color: var(--bg-white); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+.logo::before {
+    content: ''; 
+    width: 28px; 
+    height: 28px;
+    background-image: url('../img/logo.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent; 
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text-color-dark);
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+.user-actions .login {
+    text-decoration: none;
+    color: var(--primary-color);
+    margin-right: 15px;
+    border: 1px solid var(--primary-color);
+}
+
+.user-actions .register-btn {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+/* --- Footer Styles --- */
+.footer {
+    background-color: #18191C;
+    color: #DDDDDD;
+    padding: 40px 10%;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-brand .logo {
+    color: var(--bg-white);
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    color: #AAAAAA;
+    margin-bottom: 5px;
+}
+
+.footer-links h4 {
+    color: var(--bg-white);
+    margin-bottom: 20px; 
+    font-size: 18px; 
+    font-weight: bold;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: #AAAAAA; 
+    font-size: 14px;
+    display: block; 
+    position: relative; 
+    transform: translateX(0); 
+    transition: all 0.2s ease; 
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #444444;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #AAAAAA;
+}
+
+.social-icons i {
+    margin-left: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.social-icons i:hover {
+    color: var(--primary-color);
+}
+
+.footer-links ul li a:hover {
+    color: var(--bg-white); 
+    transform: translateX(10px); 
+}
+
+.footer-links ul li a::before {
+    content: "\2192";
+    font-family: Arial, sans-serif;
+    color: var(--bg-white);
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%) translateX(0); 
+    opacity: 0; 
+    transition: all 0.2s ease;
+}
+
+.footer-links ul li a:hover::before {
+    opacity: 1; 
+}
