@@ -1,14 +1,214 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-<head><title>Register</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobConnect - Register</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      width: 90%;
+      max-width: 1200px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Left form section */
+    .form-section {
+      width: 45%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .form-header h2 {
+      margin: 0;
+    }
+
+    .form-header select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .login-link {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .login-link a {
+      color: red;
+      text-decoration: none;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox input {
+      margin-right: 10px;
+    }
+
+    .checkbox a {
+      color: red;
+      text-decoration: none;
+    }
+
+    .create-btn {
+      width: 100%;
+      background-color: red;
+      color: #fff;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .create-btn:hover {
+      background-color: darkred;
+    }
+
+    /* Right image */
+    .image-section {
+      width: 45%;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    input {
+      color: black; /* default text color */
+    }
+
+    input.error::placeholder {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
 <body>
-  <h2>Register</h2>
-  <form method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Register</button>
-  </form>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="form-section">
+      <div class="logo">
+        <img src="{% static 'img/logo.png' %}" alt="Logo">
+        <span>JobConnect</span>
+      </div>
+
+      
+
+      <p class="login-link">Already have account? <a href="{% url 'login' %}">Log In</a></p>
+
+      <!-- ✅ Added form -->
+      <form method="POST" action="">
+        {% csrf_token %}
+        
+        <div class="form-header">
+          <h2>Create account.</h2>
+          <div class="form-group">
+            <select name="role" required>
+              <option value="employer" {% if role_value == "employer" %}selected{% endif %}>Employer</option>
+              <option value="applicant" {% if role_value == "applicant" %}selected{% endif %}>Applicant</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="full_name" placeholder="Full Name" required>
+          <input 
+            type="text" 
+            name="username" 
+            placeholder="{{ username_error|default:'Username' }}" 
+            value="{% if not username_error %}{{ username_value }}{% endif %}" 
+            class="{% if username_error %}error{% endif %}" 
+            required>
+
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" 
+            placeholder="{{ email_error|default:'Email address' }}" 
+            value="{% if not email_error %}{{ email_value }}{% endif %}" 
+            class="{% if email_error %}error{% endif %}" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+
+        <div class="checkbox">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I've read and agree with your <a href="#">Terms of Services</a></label>
+        </div>
+
+        <button type="submit" class="create-btn">Create Account →</button>
+      </form>
+    </div>
+
+    <!-- Right Section -->
+    <div class="image-section">
+      <img src="{% static 'img/cover.png' %}" alt="Side Image">
+    </div>
+  </div>
 </body>
 </html>
