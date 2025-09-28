@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'JobConnectApp',
     'Dashboards',
     'User',
+    'Employer',
 ]
 
 MIDDLEWARE = [
