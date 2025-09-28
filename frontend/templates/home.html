@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Home - JobConnect</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .welcome-box {
+            background-color: #fff;
+            padding: 40px 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .welcome-box h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .welcome-box p {
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-  {% if user %}
-    <h1>Welcome, {{ admins.username|default:admins.email }}!</h1>
-    <p>You are logged in with <strong>{{ admins.email }}</strong></p>
-    <a href="{% url 'logout' %}">Logout</a>
-  {% else %}
-    <h1>Welcome to JobConnect!</h1>
-    <p>You are not logged in.</p>
-    <a href="{% url 'admin_login' %}">Login</a>
-  {% endif %}
+    <div class="welcome-box">
+      {% if user %}
+          <h1>Welcome, {{ user.username }}!</h1>
+          <p>Logged in as: {{ role }}</p>
+      {% else %}
+          <h1>Welcome, Guest!</h1>
+          <p>Please log in to see your dashboard.</p>
+      {% endif %}
+  </div>
+
 </body>
 </html>
