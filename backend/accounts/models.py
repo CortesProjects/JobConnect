@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     
+    DoesNotExist = None
     USER_TYPE_CHOICES = (
         ('student', 'Student'),
         ('employer', 'Employer'),
