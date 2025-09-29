@@ -173,7 +173,6 @@
     display: flex;
     align-items: center;
     font-size: 14px;
-    margin-bottom: 30px;
     color: var(--text-color-dark);
 }
 
@@ -223,6 +222,7 @@
     background-color: var(--primary-color);
     color: var(--bg-white);
     padding: 15px 20px; 
+    margin-top: 30px;
     font-size: 18px;
     border-radius: 8px; 
     display: flex; 
