@@ -39,7 +39,7 @@ class StudentRegistrationForm(UserCreationForm):
                 field.widget.attrs['placeholder'] = 'Last Name'
             elif name == 'email':
                 field.widget.attrs['placeholder'] = 'Email address'
-            elif name == 'password':
+            elif name == 'password1':
                 field.widget.attrs['placeholder'] = 'Password'
                 field.label = False 
             elif name == 'password2':
