@@ -12,7 +12,7 @@ python backend\manage.py runserver<br>
 or <br>
 python jobconnect\backend\manage.py runserver<br>
 
-"if login fails"<br>
+<h5>"if login fails"<h5><br>
 python backend\manage.py migrate<br>
 python backend\manage.py runserver<br>
 
