@@ -1,7 +1,7 @@
 # JobConnect
 
 Project title & short description
-<h2>Title:<h2></h2> Job Connect<br>
+<h6>Title:</h6> Job Connect<br>
 Description: Our project focuses on helping people find companies where they can apply for jobs. While our main target audience is students, anyone can become an applicant and apply to a company. Employers are also able to create listings and manage applications to connect with potential candidates.
 Setup & run instructions:
 open cmd
