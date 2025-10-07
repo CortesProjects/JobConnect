@@ -12,11 +12,11 @@ python backend\manage.py runserver<br>
 or <br>
 python jobconnect\backend\manage.py runserver<br>
 
-<h5>"if login fails"</h5>h5><br>
+<h5>"if login fails"</h5>
 python backend\manage.py migrate<br>
 python backend\manage.py runserver<br>
 
-"ModuleNotFoundError"<br>
+<h5>"ModuleNotFoundError"</h5>
 cd jobconnect<br>
 python -m venv env<br>
 env\scripts\activate<br>
