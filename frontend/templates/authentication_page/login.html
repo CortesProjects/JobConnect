@@ -5,124 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobConnect - Login</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      display: flex;
-      width: 90%;
-      max-width: 1200px;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Left form section */
-    .form-section {
-      width: 45%;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .logo img {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-    }
-
-    .logo span {
-      font-weight: bold;
-      font-size: 20px;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-    }
-
-    .signup-link {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .signup-link a {
-      color: red;
-      text-decoration: none;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .extra-options {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .extra-options label {
-      display: flex;
-      align-items: center;
-    }
-
-    .extra-options input {
-      margin-right: 5px;
-    }
-
-    .extra-options a {
-      color: red;
-      text-decoration: none;
-    }
-
-    .login-btn {
-      width: 100%;
-      background-color: red;
-      color: #fff;
-      padding: 14px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .login-btn:hover {
-      background-color: darkred;
-    }
-
-    /* Right image */
-    .image-section {
-      width: 45%;
-    }
-
-    .image-section img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/authentication_page/login.css' %}">
 </head>
 <body>
+  <a href="{% url 'homepage' %}" class="back-btn" title="Go back to Homepage">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+
   <div class="container">
     <!-- Left Section -->
     <div class="form-section">
@@ -137,15 +27,16 @@
       <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
 
-        {% if email_error %}
-          <p style="color:red; margin-bottom:5px;">{{ email_error }}</p>
-        {% endif %}
-        <input type="email" name="email" placeholder="Email address" class="form-group" value="{{ email_value|default:'' }}" required>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="{{ email_error|default:'Email address' }}" value="{% if not email_error %}{{ email_value }}{% endif %}" class="{% if email_error %}error{% endif %}" required>
+        </div>
+        <div class="form-group password-container">
+          <input type="password" id="password" name="password" placeholder="{{ password_error|default:'Password' }}" class="{% if password_error %}error{% endif %}" required>
+          <span class="toggle-password" data-target="password">
+            <i class="fas fa-eye"></i>
+          </span>
+        </div>
 
-        {% if password_error %}
-          <p style="color:red; margin-bottom:5px;">{{ password_error }}</p>
-        {% endif %}
-        <input type="password" name="password" placeholder="Password" class="form-group" required>
 
         <div class="extra-options">
           <label><input type="checkbox" name="remember_me"> Remember Me</label>
@@ -162,5 +53,7 @@
       <img src="{% static 'img/cover.png' %}" alt="Side Image">
     </div>
   </div>
+
+  <script src="{% static 'js/authentication_page/feature_password.js' %}"></script>
 </body>
 </html>

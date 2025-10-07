@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Left form section */
+.form-section {
+    width: 45%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.signup-link {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.signup-link a {
+    color: red;
+    text-decoration: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input.error::placeholder {
+    color: red;
+    font-style: italic;
+}
+
+.extra-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.extra-options label {
+    display: flex;
+    align-items: center;
+}
+
+.extra-options input {
+    margin-right: 5px;
+}
+
+.extra-options a {
+    color: red;
+    text-decoration: none;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: red;
+    color: #fff;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: darkred;
+}
+
+/* Right image */
+.image-section {
+    width: 45%;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Eye show and hide eye icon */
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    color: #666;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: red; /* Change to whatever hover color you like */
+}
+
+.back-btn {
+  position: fixed;    /* removes it from the normal flow */
+  top: 20px;          /* distance from top of viewport */
+  left: 20px;         /* distance from left of viewport */
+  font-size: 24px;
+  color: red;
+  text-decoration: none;
+  z-index: 1000;
+  transition: color 0.3s ease;
+  display: inline-flex; /* ensures the arrow icon aligns correctly */
+  align-items: center;
+}
+.back-btn:hover {
+  color: darkred;
+}

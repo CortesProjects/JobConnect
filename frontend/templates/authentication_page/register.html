@@ -5,143 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobConnect - Register</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
 
-    .container {
-      display: flex;
-      width: 90%;
-      max-width: 1200px;
-      justify-content: space-between;
-      align-items: center;
-    }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    /* Left form section */
-    .form-section {
-      width: 45%;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .logo img {
-      width: 30px;
-      height: 30px;
-      margin-right: 10px;
-    }
-
-    .logo span {
-      font-weight: bold;
-      font-size: 20px;
-    }
-
-    .form-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .form-header h2 {
-      margin: 0;
-    }
-
-    .form-header select {
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .login-link {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .login-link a {
-      color: red;
-      text-decoration: none;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-      display: flex;
-      gap: 10px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .checkbox {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .checkbox input {
-      margin-right: 10px;
-    }
-
-    .checkbox a {
-      color: red;
-      text-decoration: none;
-    }
-
-    .create-btn {
-      width: 100%;
-      background-color: red;
-      color: #fff;
-      padding: 14px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .create-btn:hover {
-      background-color: darkred;
-    }
-
-    /* Right image */
-    .image-section {
-      width: 45%;
-    }
-
-    .image-section img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    input {
-      color: black; /* default text color */
-    }
-
-    input.error::placeholder {
-      color: red;
-      font-style: italic;
-    }
-  </style>
+  <!-- Link external CSS -->
+  <link rel="stylesheet" href="{% static 'css/authentication_page/register.css' %}">
 </head>
 <body>
+
+  <a href="{% url 'homepage' %}" class="back-btn" title="Go back to Homepage">
+    <i class="fas fa-arrow-left"></i>
+  </a>
   <div class="container">
     <!-- Left Section -->
     <div class="form-section">
@@ -150,11 +24,8 @@
         <span>JobConnect</span>
       </div>
 
-      
-
       <p class="login-link">Already have account? <a href="{% url 'login' %}">Log In</a></p>
 
-      <!-- ✅ Added form -->
       <form method="POST" action="">
         {% csrf_token %}
         
@@ -177,7 +48,6 @@
             value="{% if not username_error %}{{ username_value }}{% endif %}" 
             class="{% if username_error %}error{% endif %}" 
             required>
-
         </div>
 
         <div class="form-group">
@@ -188,12 +58,20 @@
             required>
         </div>
 
-        <div class="form-group">
-          <input type="password" name="password" placeholder="Password" required>
+        <div class="password-container">
+          <input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password" required>
+          <span class="toggle-password" data-target="password">
+            <i class="fas fa-eye"></i>
+          </span>
+          <div id="password-error" class="error-message"></div>
         </div>
 
-        <div class="form-group">
-          <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        <div class="password-container">
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" autocomplete="new-password" required>
+          <span class="toggle-password" data-target="password">
+            <i class="fas fa-eye"></i>
+          </span>
+          <div id="confirm-password-error" class="error-message"></div>
         </div>
 
         <div class="checkbox">
@@ -210,5 +88,8 @@
       <img src="{% static 'img/cover.png' %}" alt="Side Image">
     </div>
   </div>
+
+  <!-- Link external JS -->
+  <script src="{% static 'js/authentication_page/feature_password.js' %}"></script>
 </body>
 </html>
