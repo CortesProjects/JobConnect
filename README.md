@@ -20,17 +20,17 @@ python backend\manage.py runserver<br>
 cd jobconnect<br>
 python -m venv env<br>
 env\scripts\activate<br>
-pip install django-allauth "django-allauth[providers]" requests "fastapi[all]" uvicorn supabase Django
+pip install django-allauth "django-allauth[providers]" requests "fastapi[all]" uvicorn supabase Django<br>
 python backend\manage.py runserver<br>
 
 
 <h3>Team:</h3>
-Isaac Raphael P. Cortes - Lead Developer
-Richemmae V. Bigno - Full-Stack Developer
-Ken Daniel E. Cortes - Full-Stack Developer
+Isaac Raphael P. Cortes - Lead Developer<br>
+Richemmae V. Bigno - Full-Stack Developer<br>
+Ken Daniel E. Cortes - Full-Stack Developer<br>
 
-Paul Andrie E. Bibit - Project Owner
-Justine Filip D. Custodio - Business Analyst
-Van Andrae P. Bigtasin - Scrum Master
+Paul Andrie E. Bibit - Project Owner<br>
+Justine Filip D. Custodio - Business Analyst<br>
+Van Andrae P. Bigtasin - Scrum Master<br>
 
-Deployed Link: NOT Yet Available
+<h3>Deployed Link:</h3> NOT Yet Available
