@@ -1,46 +1,135 @@
+
+
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}JobConnect - Find Your Dream Job{% endblock %}</title> 
-    <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    {% block extra_css %}
-    {% endblock %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobConnect - Find Your Dream Job</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'global.css' %}">
+  {% block extra_css %}{% endblock %}
 
-    <header class="header">
-        <div class="logo">JobConnect</div>
-        <div class="user-actions">
+</head>
+
+</head>
+<body class="bg-white min-h-screen">
+
+<header class="header">
+    <div class="logo">JobConnect</div>
+
+    <!-- User Actions (The new dropdown structure) -->
+    <div class="user-actions">
+        
+        <!-- Profile Button/Trigger -->
+        <div id="userProfileButton" class="user-info-container cursor-pointer">
+            <!-- Profile Image -->
             {% block user_actions %}
-                {% if not user.is_authenticated %}
+                {% if not user %}
+                    <!-- Guest view -->
                     <a href="{% url 'login' %}" class="login">Login</a> 
                     <a href="{% url 'register' %}" class="register-btn">Sign Up</a>
+                {% else %}
+                    <!-- Logged-in view -->
+                        <div class="user-profile">
+                            <img src="{% static 'img/cover.png' %}" alt="Profile" class="profile-img">
+                        </div>
+                        <div class="user-details hidden sm:flex">
+                            <p><strong>Username:</strong> {{ user.username }}</p>
+                            <p class="role-text">Logged in as: {{ role }}</p>
+                        </div>
                 {% endif %}
             {% endblock %}
+            <!-- Dropdown Indicator Icon -->
+            <i class="fas fa-chevron-down text-gray-500 text-xs ml-2 chevron-icon" id="dropdownIcon"></i>
         </div>
-    </header>
-    {% if messages %}
-        <div class="messages-container">
-            {% for message in messages %}
-                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-                    {{ message }}
-                </div>
-            {% endfor %}
+
+        <!-- Dropdown Menu -->
+        <div id="dropdownMenu" class="dropdown-menu">
+            <div class="dropdown-header">
+                <p class="font-bold text-sm text-color-dark">Signed in as</p>
+                <p class="text-xs text-color-light truncate">{{email}}</p>
+            </div>
+            
+            <!-- NEW: View Profile Link -->
+            <a href="#" class="dropdown-item">
+                <i class="fas fa-user-circle mr-3"></i>
+                View Profile
+            </a>
+
+            <!-- Logout Button (The core requirement) -->
+            <a href="{% url 'logout' %}" class="dropdown-item logout-item">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                Logout
+            </a>
+
         </div>
-    {% endif %}
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    {% block footer %}
-    {% endblock %}
+    </div>
+    <!-- End User Actions -->
+</header>
 
-    {% block extra_js %} 
 
-    {% endblock %} 
+{% if messages %}
+<div class="messages-container">
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Elements are selected by their IDs
+        const profileButton = document.getElementById('userProfileButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownIcon = document.getElementById('dropdownIcon');
+
+        // Function to toggle the dropdown's visibility and icon rotation
+        function toggleDropdown() {
+            const isActive = dropdownMenu.classList.contains('active');
+            
+            if (isActive) {
+                // Hide menu
+                dropdownMenu.classList.remove('active');
+                dropdownIcon.classList.remove('rotate');
+                profileButton.style.backgroundColor = 'var(--bg-light)'; // Reset background
+            } else {
+                // Show menu
+                dropdownMenu.classList.add('active');
+                dropdownIcon.classList.add('rotate');
+                profileButton.style.backgroundColor = 'var(--secondary-color)'; // Highlight on active
+            }
+        }
+
+        // 1. Click listener on the profile button/area to toggle
+        profileButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            toggleDropdown();
+        });
+
+        // 2. Click listener on the entire document to close the dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            // Check if the click occurred outside the profile button AND the dropdown menu
+            if (!profileButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                if (dropdownMenu.classList.contains('active')) {
+                    // Only hide if it's currently visible
+                    toggleDropdown();
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
+
