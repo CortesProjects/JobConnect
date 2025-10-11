@@ -18,10 +18,11 @@ or <br>
 <span style="color:blue">python backend/manage.py migrate</span><br>
 <span style="color:blue">python backend/manage.py runserver</span><br>
 
-<h5 style="color:red">"ModuleNotFoundError"</h5>
+<h5 style="color:red">"ModuleNotFoundError: No module named 'request'"</h5>
 <span style="color:blue">cd jobconnect</span><br>
 <span style="color:blue">python -m <span style="color:purple">venv</span> env</span><br>
 <span style="color:blue">env\scripts\activate</span><br>
+<h5 style="color:red">"ModuleNotFoundError (but many module) do this"</h5>
 <span style="color:red">pip install</span> <span style="color:purple">django-allauth</span> <span style="color:purple">"django-allauth[providers]"</span> <span style="color:purple">requests</span> <span style="color:purple">"fastapi[all]"</span> <span style="color:purple">uvicorn</span> <span style="color:purple">supabase</span> <span style="color:purple">Django</span><br>
 <span style="color:blue">python backend/manage.py runserver</span><br>
 
