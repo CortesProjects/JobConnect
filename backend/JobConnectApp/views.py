@@ -139,7 +139,7 @@ def login_site(request):
                 "username": user["username"]
             }
 
-            return redirect("home")
+            return redirect("homepage")
 
     return render(request, "authentication_page/login.html", context)
 
@@ -169,7 +169,7 @@ def home(request):
 
 def logout_view(request):
     request.session.flush()  # clears all session data
-    return redirect("admin_login")
+    return redirect("homepage")  # or "admin_login" if you want
 
 def base(request):
     return render(request, "base.html")
