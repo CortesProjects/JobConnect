@@ -24,33 +24,34 @@
     <div class="user-actions">
         
         <!-- Profile Button/Trigger -->
-        <div id="userProfileButton" class="user-info-container cursor-pointer">
             <!-- Profile Image -->
             {% block user_actions %}
-                {% if not user %}
+                {% if user %}
                     <!-- Guest view -->
-                    <a href="{% url 'login' %}" class="login">Login</a> 
-                    <a href="{% url 'register' %}" class="register-btn">Sign Up</a>
-                {% else %}
-                    <!-- Logged-in view -->
+                     <div id="userProfileButton" class="user-info-container cursor-pointer">
                         <div class="user-profile">
-                            <img src="{% static 'img/cover.png' %}" alt="Profile" class="profile-img">
+                            <img src="{% static 'user.png' %}" alt="Profile" class="profile-img">
                         </div>
                         <div class="user-details hidden sm:flex">
                             <p><strong>Username:</strong> {{ user.username }}</p>
                             <p class="role-text">Logged in as: {{ role }}</p>
                         </div>
+                        <i class="fas fa-chevron-down text-gray-500 text-xs ml-2 chevron-icon" id="dropdownIcon"></i>
+                    </div>
+                {% else %}
+                    <!-- Logged-in view -->
+
+                    <a href="{% url 'login' %}" class="login">Login</a> 
+                    <a href="{% url 'register' %}" class="register-btn">Sign Up</a>
                 {% endif %}
             {% endblock %}
             <!-- Dropdown Indicator Icon -->
-            <i class="fas fa-chevron-down text-gray-500 text-xs ml-2 chevron-icon" id="dropdownIcon"></i>
-        </div>
-
+            
         <!-- Dropdown Menu -->
         <div id="dropdownMenu" class="dropdown-menu">
             <div class="dropdown-header">
                 <p class="font-bold text-sm text-color-dark">Signed in as</p>
-                <p class="text-xs text-color-light truncate">{{email}}</p>
+                <p class="email-text text-xs text-color-light">{{email}}</p>
             </div>
             
             <!-- NEW: View Profile Link -->
@@ -129,6 +130,23 @@
         });
     });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const emailText = document.querySelector('.email-text');
+  if (!emailText) return;
+
+  const parentWidth = emailText.parentElement.offsetWidth;
+  let fontSize = parseFloat(window.getComputedStyle(emailText).fontSize);
+
+  // Reduce font size until text fits within parent width
+  while (emailText.scrollWidth > parentWidth && fontSize > 8) {
+    fontSize -= 5.5;
+    emailText.style.fontSize = fontSize + 'px';
+  }
+});
+</script>
+
 
 </body>
 </html>
